@@ -27,7 +27,7 @@ const Home = ({ setSearch }) => {
           }}
           className="text-center font-oswald text-[24px] leading-[36px] rounded-[10px] py-[8px] px-[80px] bg-btnColor font-semibold"
         >
-          Go to tasks
+          Go to calendar
         </button>
       </div>
     </div>
