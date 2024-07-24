@@ -30,13 +30,15 @@ const Container = () => {
   const allTodos = [...today, ...tomorrow, ...thisWeek];
 
   useEffect(() => {
-    const todayData = localStorage.getItem("todayTodos") || [];
-    const tomorrowData = localStorage.getItem("tomorrowTodos") || [];
-    const thisWeekData = localStorage.getItem("thisWeekTodos") || [];
+    const todayData = JSON.parse(localStorage.getItem("todayTodos")) || [];
+    const tomorrowData =
+      JSON.parse(localStorage.getItem("tomorrowTodos")) || [];
+    const thisWeekData =
+      JSON.parse(localStorage.getItem("thisWeekTodos")) || [];
 
-    dispatch(setTodayTodos(JSON.parse(todayData)));
-    dispatch(setTomorrowTodos(JSON.parse(tomorrowData)));
-    dispatch(setThisWeekTodos(JSON.parse(thisWeekData)));
+    dispatch(setTodayTodos(todayData));
+    dispatch(setTomorrowTodos(tomorrowData));
+    dispatch(setThisWeekTodos(thisWeekData));
   }, []);
 
   return (
