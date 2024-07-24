@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    #login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .login_input {
+        width: 300px;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 7px;
+        background: rgb(255, 249, 249);
+        padding: 4.5px 12px;
+    }
+
+    .login_input::placeholder {
+        color: rgba(0, 0, 0, 0.6);
+        font-family: Noto Sans;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: 0%;
+    }
+
+    .idf {
+        box-sizing: border-box;
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        border-radius: 100px 50px 100px 100px;
+        background: rgb(255, 255, 255);
+    }
+
+    ::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+}
