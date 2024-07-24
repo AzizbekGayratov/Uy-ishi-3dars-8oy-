@@ -5,6 +5,7 @@ import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import toast from "react-hot-toast";
+import { Vortex } from "react-loader-spinner";
 
 const saveUser = (user) => {
   localStorage.setItem("user", JSON.stringify(user));
@@ -53,10 +54,10 @@ const Login = () => {
       setUser(data);
       saveUser(data);
       navigate("/");
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      setError(err.message);
       console.error("There was an error!", error);
-      toast.error(error.message);
+      toast.error(error);
     } finally {
       setLoading(false);
     }
@@ -70,59 +71,75 @@ const Login = () => {
   return (
     <div id="login" className="bg-loginBgColor">
       <div className="max-w-[1215px] mx-auto px-[15px]">
-        <div className="grid grid-cols-2 gap-[25px]">
-          <div className="max-w-[500px] h-auto">
-            <img src={Img} alt="img" />
-          </div>
-          <div className="bg-white rounded-[40px] flex flex-col  justify-center">
-            <div className="max-w-[300px] mx-auto">
-              <h1 className="text-black font-oswald font-bold text-[36px] leading-[53px]">
-                Sign in
-              </h1>
-              <form
-                onSubmit={handleSubmit}
-                className="flex flex-col gap-[23px] mt-[45px]"
-              >
-                <input
-                  value={userName}
-                  onChange={(e) => setUserName(e.target.value)}
-                  type="text"
-                  className="login_input"
-                  placeholder="Username"
-                  required
-                />
-                <div className="relative">
-                  <input
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    type={showPassword ? "text" : "password"}
-                    className="login_input"
-                    placeholder="Password"
-                    required
-                  />
-                  {!showPassword ? (
-                    <AiOutlineEye
-                      className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-[20px] text-secondary"
-                      onClick={() => setShowPassword(!showPassword)}
+        {loading ? (
+          <>
+            <Vortex
+              visible={true}
+              height="280"
+              width="280"
+              ariaLabel="vortex-loading"
+              wrapperStyle={{}}
+              wrapperClass="vortex-wrapper"
+              colors={["green", "green", "green", "green", "green", "green"]}
+            />
+          </>
+        ) : (
+          <>
+            <div className="grid grid-cols-2 gap-[25px]">
+              <div className="max-w-[500px] h-auto">
+                <img src={Img} alt="img" />
+              </div>
+              <div className="bg-white rounded-[40px] flex flex-col  justify-center">
+                <div className="max-w-[300px] mx-auto">
+                  <h1 className="text-black font-oswald font-bold text-[36px] leading-[53px]">
+                    Sign in
+                  </h1>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-col gap-[23px] mt-[45px]"
+                  >
+                    <input
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
+                      type="text"
+                      className="login_input"
+                      placeholder="Username"
+                      required
                     />
-                  ) : (
-                    <AiOutlineEyeInvisible
-                      className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-[20px] text-secondary"
-                      onClick={() => setShowPassword(!showPassword)}
-                    />
-                  )}
+                    <div className="relative">
+                      <input
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        type={showPassword ? "text" : "password"}
+                        className="login_input"
+                        placeholder="Password"
+                        required
+                      />
+                      {!showPassword ? (
+                        <AiOutlineEye
+                          className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-[20px] text-secondary"
+                          onClick={() => setShowPassword(!showPassword)}
+                        />
+                      ) : (
+                        <AiOutlineEyeInvisible
+                          className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-[20px] text-secondary"
+                          onClick={() => setShowPassword(!showPassword)}
+                        />
+                      )}
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="text-center py-[8px] bg-btnColor rounded-[10px] font-inter text-[15px] leading-[19px] font-semibold "
+                    >
+                      {loading ? "In progress..." : "Sign in"}
+                    </button>
+                  </form>
                 </div>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="text-center py-[8px] bg-btnColor rounded-[10px] font-inter text-[15px] leading-[19px] font-semibold "
-                >
-                  {loading ? "In progress..." : "Sign in"}
-                </button>
-              </form>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );

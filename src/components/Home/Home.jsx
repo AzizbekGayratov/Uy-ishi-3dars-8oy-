@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 
 const Home = ({ setSearch }) => {
   const navigate = useNavigate();
+  
   useEffect(() => {
     setSearch(true);
   }, []);
+  
   return (
     <div className="w-full h-[93.5vh] rounded-[40px] bg-bgColor">
       <div className="w-full h-full flex flex-col gap-[50px] items-center justify-center">
