@@ -28,7 +28,6 @@ const Container = () => {
   const dispatch = useDispatch();
 
   const allTodos = [...today, ...tomorrow, ...thisWeek];
-  const count = allTodos.length;
 
   useEffect(() => {
     const todayData = localStorage.getItem("todayTodos");
@@ -82,7 +81,7 @@ const Container = () => {
                       Upcoming
                     </NavLink>
                     <span className="absolute font-bold top-0 right-3 px-[3px] py-[2px] text-[15px]">
-                      {count}
+                      {allTodos.length}
                     </span>
                   </li>
                   <li className="font-notoSans text-[15px] leading-[22px] relative">
